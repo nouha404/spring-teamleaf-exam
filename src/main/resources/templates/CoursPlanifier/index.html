@@ -12,7 +12,7 @@
     <div class="container mt-2" layout:fragment="contentForView">
         <div class="card mt-1">
             <div class="card-header">
-                <h3>Liste des sessions de cours qui ont été faites</h3>
+                <h3>Liste des cours planifier</h3>
                 <div class="my- float-end">
                     <a  class="btn btn-outline-info " th:href="@{/admin/show-client-form}">Nouveau</a>
 
@@ -21,35 +21,34 @@
 
             <div class="card-body">
                 <form method="get" class="d-flex w-50 mb-5">
-                    <input type="search" name="module"
-                           id="module" aria-label="search" class="mb-2"
-                           th:value="${module}"
-                           th:action="@{/session}"
-                    >
-                    <button type="submit" class="btn btn-outline-success ">Search</button>
+                    <select name="etat" id="etat" class="form-select" aria-label="Select etat">
+                        <option value="">Tous les états</option>
+                        <option value="TERMINER">Terminés</option>
+                        <option value="EN_COURS">En cours</option>
+                    </select>
+                    <button type="submit" class="btn btn-outline-success">Filtrer</button>
                 </form>
+
 
                 <table class="table table-bordered">
                     <thead>
-                    <th>Date</th>
-                    <th>Heure debut</th>
-                    <th>Heure fin</th>
-                    <th>Nombre heure</th>
-                    <th>Lieu</th>
                     <th>Module</th>
+                    <th>Semestre</th>
+                    <th>Professeur</th>
+                    <th>Nombre heure global</th>
+                    <th>Etat</th>
                     </thead>
                     <tbody>
 
-                    <tr th:each="cl:${sessionsCours}">
-                        <td th:text="${cl.date}"></td>
-                        <td th:text="${cl.heureDebut}"></td>
-                        <td th:text="${cl.heureFin}"></td>
-                        <td th:text="${cl.nombreHeure}"></td>
-                        <td th:text="${cl.typeSession}"></td>
-                        <td th:text="${cl.cours}"></td>
+                    <tr th:each="cp:${coursPlanifier}">
+                        <td th:text="${cp.module}"></td>
+                        <td th:text="${cp.semestre}"></td>
+                        <td th:text="${cp.professeur}"></td>
+                        <td th:text="${cp.nbreHeureGlobal}"></td>
+                        <td th:text="${cp.etatCours}"></td>
 
                         <td>
-                            <a class="btn btn-outline-success" th:href="@{/session/professeur(id=${cl.professeur})}" >Session du professeur</a>
+                            <a class="btn btn-outline-success">Action</a>
                         </td>
                     </tr>
 
@@ -60,7 +59,7 @@
                     <ul class="pagination">
                         <li class="page-item">
                             <a th:class="${currentPage == 0 ? 'page-link disabled' : 'page-link'}"
-                               th:href="@{/session(page=${PreviousPage})}">
+                               th:href="@{/cours(page=${PreviousPage})}">
                                 Previous
                             </a>
                         </li>
@@ -70,7 +69,7 @@
                             <a
                                     th:class="${statut.index==currentPage? 'page-link active' : 'page-link'}"
                                     th:text="${statut.index+1}"
-                                    th:href="@{/session(page=${statut.index})}"
+                                    th:href="@{/cours(page=${statut.index})}"
 
                             >
 
@@ -81,7 +80,7 @@
 
                             <a
                                     th:class="${currentPage==nextPage? 'page-link desabled' : 'page-link' }"
-                                    th:href="@{/session(page=${nextPage})}"
+                                    th:href="@{/cours(page=${nextPage})}"
                             >
                                 Next
                             </a>

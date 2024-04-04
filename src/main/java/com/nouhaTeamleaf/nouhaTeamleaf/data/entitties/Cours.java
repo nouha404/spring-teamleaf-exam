@@ -1,5 +1,6 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.entitties;
 
+import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EtatCours;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.util.List;
 @Table(name = "cours")
 public class Cours extends AbstractEntity {
     private String nbreHeureGlobal;
+    private EtatCours etatCours;
 
     @ManyToOne
     Semestre semestre;
