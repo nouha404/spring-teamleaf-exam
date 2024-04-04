@@ -27,6 +27,7 @@ public class SessionCoursResponseDto {
     private TypeSession typeSession;
     private String cours;
     private long professeur;
+    private String nomComplet;
 
     public  static SessionCoursResponseDto toDto(SessionCours sessionCours) {
 
@@ -34,6 +35,7 @@ public class SessionCoursResponseDto {
                 .id(sessionCours.getId())
                 .date(sessionCours.getDate())
                 .heureDebut(sessionCours.getHeureDebut())
+                .nomComplet(sessionCours.getProfesseur().getNom()+" "+sessionCours.getProfesseur().getPrenom())
                 .heureFin(sessionCours.getHeureFin())
                 .nombreHeure(sessionCours.getNombreHeure())
                 .typeSession(sessionCours.getTypeSession())

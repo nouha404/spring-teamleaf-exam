@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr"
-      layout:decorate="layout/base"
-      xmlns:layout="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet"
-          href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
-</head>
-<body>
+    <html lang="fr"
+          layout:decorate="layout/base"
+          xmlns:layout="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet"
+              href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+    </head>
+    <body>
     <div class="container mt-2" layout:fragment="contentForView">
         <div class="card mt-1">
             <div class="card-header">
@@ -20,7 +20,6 @@
             </div>
 
             <div class="card-body">
-
                 <form method="get" class="d-flex w-50 mb-5">
                     <input type="search" name="module"
                            id="module" aria-label="search" class="mb-2"
@@ -52,7 +51,7 @@
                         <td th:text="${cl.cours}"></td>
 
                         <td>
-                            <a class="btn btn-outline-success" >Action</a>
+                            <a class="btn btn-outline-success" th:href="@{/session/professeur(id=${cl.professeur})}" >Session du professeur</a>
                         </td>
                     </tr>
 
@@ -101,7 +100,6 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
-
+    </body>
 
 </html>

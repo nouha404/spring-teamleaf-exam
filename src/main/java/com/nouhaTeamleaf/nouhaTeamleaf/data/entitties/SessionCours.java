@@ -1,5 +1,6 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.entitties;
 
+import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EtatSession;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.TypeSession;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class SessionCours extends AbstractEntity {
     private LocalTime heureFin;
     private long nombreHeure;
     private TypeSession typeSession;
+    private EtatSession etatSession;
     @ManyToOne
     Cours cours;
     @ManyToOne
