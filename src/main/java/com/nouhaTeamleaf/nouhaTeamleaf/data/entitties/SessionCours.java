@@ -25,7 +25,7 @@ public class SessionCours extends AbstractEntity {
     Cours cours;
     @ManyToOne
     Salle salle;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     Professeur professeur;
     @ManyToOne
     AttacheDeClasse attacheDeClasse;

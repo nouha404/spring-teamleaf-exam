@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr"
+      layout:decorate="layout/base"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-2" layout:fragment="contentForView">
+        <div class="card mt-1">
+            <div class="card-header">
+                <h3>Liste des sessions de cours</h3>
+                <div class="my- float-end">
+                    <a  class="btn btn-outline-info " th:href="@{/admin/show-client-form}">Nouveau</a>
+
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                <form method="get" class="d-flex w-50 mb-5">
+                    <input type="search" name="module"
+                           id="module" aria-label="search" class="mb-2"
+                           th:value="${module}"
+                           th:action="@{/session}"
+                    >
+                    <button type="submit" class="btn btn-outline-success ">Search</button>
+                </form>
+
+                <table class="table table-bordered">
+                    <thead>
+                    <th>Date</th>
+                    <th>Heure debut</th>
+                    <th>Heure fin</th>
+                    <th>Nombre heure</th>
+                    <th>Type Session</th>
+                    <th>Professeur</th>
+                    <th>Module</th>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="cl:${sessionsCours}">
+                        <td th:text="${cl.date}"></td>
+                        <td th:text="${cl.heureDebut}"></td>
+                        <td th:text="${cl.heureFin}"></td>
+                        <td th:text="${cl.nombreHeure}"></td>
+                        <td th:text="${cl.typeSession}"></td>
+                        <td th:text="${cl.professeur}"></td>
+                        <td th:text="${cl.cours}"></td>
+
+                        <td>
+                            <a class="btn btn-outline-success" >Action</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a th:class="${currentPage == 0 ? 'page-link disabled' : 'page-link'}"
+                               th:href="@{/session(page=${PreviousPage})}">
+                                Previous
+                            </a>
+                        </li>
+
+                        <li class="page-item" th:each="p,statut:${pages}">
+
+                            <a
+                                    th:class="${statut.index==currentPage? 'page-link active' : 'page-link'}"
+                                    th:text="${statut.index+1}"
+                                    th:href="@{/session(page=${statut.index})}"
+
+                            >
+
+                            </a>
+                        </li>
+
+                        <li class="page-item">
+
+                            <a
+                                    th:class="${currentPage==nextPage? 'page-link desabled' : 'page-link' }"
+                                    th:href="@{/session(page=${nextPage})}"
+                            >
+                                Next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+
+
+</html>

@@ -19,7 +19,7 @@ import java.util.List;
 
 @Order(Ordered.HIGHEST_PRECEDENCE +7)
 @RequiredArgsConstructor
-@Component
+//@Component
 public class ClasseFixtures implements CommandLineRunner {
     private final ClasseRepository classeRepository;
     private final AnneeScolaireRepository anneeScolaireRepository;
