@@ -15,13 +15,11 @@ import java.util.List;
 @Table(name = "semestres")
 public class Semestre extends AbstractEntity{
     private String libelle;
-
     @ManyToOne
-    AnneeScolaire anneeScolaire;
-    @OneToMany(mappedBy = "semestre", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Cours> cours;
-    @OneToMany(mappedBy = "semestre",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Module> modules;
+    private Niveau niveau;
+
+    @OneToMany(mappedBy = "semestre")
+    List<Cours> cours;
 
 
 }

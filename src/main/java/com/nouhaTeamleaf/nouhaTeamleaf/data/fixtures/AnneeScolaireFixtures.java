@@ -13,12 +13,11 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 
-@Order(Ordered.HIGHEST_PRECEDENCE + 1)
+@Order(5)
 @RequiredArgsConstructor
 //@Component
 public class AnneeScolaireFixtures implements CommandLineRunner {
     private final AnneeScolaireRepository anneeScolaireRepository;
-    private final FakerConfig fakerConfig;
 
     @Override
     public void run(String... args) throws Exception {
@@ -27,15 +26,13 @@ public class AnneeScolaireFixtures implements CommandLineRunner {
             LocalDate finDePeriod = debutDePeriod.plusYears(1).minusDays(1);
 
             AnneeScolaire anneeScolaire = new AnneeScolaire();
-            if (year==2024){
-                anneeScolaire.setActive(true);
-            }
-            anneeScolaire.setActive(false);
+            anneeScolaire.setIsActive(year == 2024);
+
             anneeScolaire.setLibelle(year + "-" + (year + 1));
             anneeScolaire.setFinDePeriod(finDePeriod);
 
             anneeScolaireRepository.save(anneeScolaire);
         }
-        }
-
     }
+
+}

@@ -9,16 +9,15 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.EtudiantRepository;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.SessionCoursRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
 
-@Order(Ordered.HIGHEST_PRECEDENCE +10)
+@Order(16)
 @RequiredArgsConstructor
 //@Component
 public class AbsenceFixtures implements CommandLineRunner {
@@ -27,24 +26,29 @@ public class AbsenceFixtures implements CommandLineRunner {
     private final EtudiantRepository etudiantRepository;
     @Override
     public void run(String... args) throws Exception {
-        for (long i = 1L; i < 5L; i++) {
-            SessionCours sessionCours = sessionCoursRepository.findById(i).orElseThrow(() -> new RuntimeException("Session de cours introuvable"));
-            Etudiant etudiant = etudiantRepository.findById(i).orElseThrow(() -> new RuntimeException("Étudiant introuvable"));
 
-            Absence absence = new Absence();
-            absence.setDateAbsence(new Date());
-            absence.setHeureAbsence(LocalTime.now());
-            absence.setMotif("Maladie");
-            absence.setStatusAbsence(StatusAbsence.JUSTIFIER);
-            absence.setEtudiant(etudiant);
-            absence.setSessionCours(sessionCours);
-            absence.setActive(true);
-            absence.setMotif("Retard");
-            absence.setAttacheDeClasses(null);
+        List<SessionCours> sessionCoursList = sessionCoursRepository.findAll();
+        for (long i = 0L; i < sessionCoursList.size(); i++){
+            SessionCours sessionCours = sessionCoursList.get((int) i);
+            for (long j = 1L; j < 5L; j++) {
+                Etudiant etudiant = etudiantRepository.findById(j).orElse(null);
 
-            absenceRepository.save(absence);
+                Absence absence = new Absence();
+                absence.setDateAbsence(new Date());
+                absence.setHeureAbsence(LocalTime.now());
+                absence.setStatusAbsence(j%2==0? StatusAbsence.NON_JUSTIFIER : StatusAbsence.JUSTIFIER);
+
+                absence.setEtudiant(etudiant);
+                absence.setSessionCours(sessionCours);
+                absence.setIsActive(true);
+                absence.setMotif(j%2==0? "Maladie":"Retard");
+
+                absenceRepository.save(absence);
+            }
+
 
         }
+
 
     }
 }

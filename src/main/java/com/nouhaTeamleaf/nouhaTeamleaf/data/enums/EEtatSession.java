@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum EtatSession {
+public enum EEtatSession {
     VALIDER(0),
     INVALIDER(1);
     private final long indexEnumEtat;

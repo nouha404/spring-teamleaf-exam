@@ -1,12 +1,12 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.entitties;
 
 
-import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.Niveau;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.ENiveau;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.Specialiter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.List;
 
@@ -18,15 +18,13 @@ import java.util.List;
 public class Professeur extends AbstractEntity {
     private String nom;
     private String prenom;
-    private String specialite;
-    private Niveau grade;
+    @Enumerated(value = EnumType.STRING)
+    private Specialiter specialite;
+    private ENiveau grade;
 
-    @ManyToOne
-    Classe classe;
-    @OneToMany(mappedBy = "professeur", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "professeur")
     private List<Cours> cours;
-
-    @OneToMany(mappedBy = "professeur", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    List<SessionCours> sessionCours;
+    @OneToMany(mappedBy = "professeur")
+    private List<ProfesseurClasse> professeurClasses;
 
 }

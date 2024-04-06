@@ -17,6 +17,6 @@ public class Salle extends AbstractEntity{
     private String number;
     private Integer nbrPlace;
 
-    @OneToMany(mappedBy = "salle", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "salle")
     private List<SessionCours> sessionCours;
 }

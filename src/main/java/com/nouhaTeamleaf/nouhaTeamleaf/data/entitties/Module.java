@@ -15,9 +15,6 @@ import java.util.List;
 public class Module extends AbstractEntity {
     private String libelle;
 
-    @ManyToOne
-    Semestre semestre;
-
-    @OneToOne
-    Cours cours;
+    @OneToMany(mappedBy = "module")
+    List<Cours> cours;
 }

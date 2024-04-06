@@ -1,12 +1,12 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers.Impl;
-
+/*
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Cours;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.SessionCours;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EtatCours;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Etudiant;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.services.CoursService;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.services.SessionCoursService;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers.CoursController;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.response.CoursResponseDto;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.response.SessionCoursResponseDto;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.response.EtudiantResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 @RequiredArgsConstructor
 public class CoursControllerImpl implements CoursController {
     private final CoursService coursService;
+    private final SessionCoursService sessionCoursService;
     @Override
     public String listeCours(
             Model model, int page,
@@ -35,4 +36,22 @@ public class CoursControllerImpl implements CoursController {
 
         return "CoursPlanifier/index";
     }
-}
+
+    @Override
+    public String listeEtudiant(
+            Model model,
+            Long coursId, int page,
+            int size
+    ) {
+        Page<Etudiant> etudiants = sessionCoursService.getEtudiantsByCours(coursId, PageRequest.of(page, size));
+        Page<EtudiantResponseDto> etudiantDto = etudiants.map(EtudiantResponseDto::toDto);
+
+        model.addAttribute("etudiants", etudiants.getContent());
+        model.addAttribute("pages",new int[etudiantDto.getTotalPages()]);
+        model.addAttribute("currentPage",page);
+        model.addAttribute("nextPage", page < etudiantDto.getTotalPages() - 1 ? page+1:page);
+        model.addAttribute("PreviousPage", page > 0 ? page-1:page);
+
+        return "CoursPlanifier/etudiants";
+    }
+}*/

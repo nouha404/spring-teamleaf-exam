@@ -1,6 +1,5 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.entitties;
 
-import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.Niveau;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,16 +14,23 @@ import java.util.List;
 @Table(name = "classes")
 public class Classe extends AbstractEntity {
     private String libelle;
-    private String filiere;
-    private Niveau niveau;
 
+    @OneToMany(mappedBy = "classe")
+    List<Inscription> inscriptions;
     @ManyToOne
-    AnneeScolaire anneeScolaire;
+    private Filiere filiere;
+    @ManyToOne
+    private Niveau niveau;
     @ManyToOne
     Cours cours;
+    @OneToMany(mappedBy = "classe")
+    private List<ClasseModule> classeModules;
 
-    @OneToMany(mappedBy = "classe", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Professeur> professeurs;
+    @OneToMany(mappedBy = "classe")
+    List<SessionCoursClasse> sessionCoursClasses;
+
+
+
 
 
 

@@ -8,7 +8,7 @@ import lombok.Setter;
 
 
 
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Getter
 @Setter
@@ -17,10 +17,10 @@ public class AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(columnDefinition = "boolean default true")
-    private Boolean active;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean isActive;
 
-    public AbstractEntity(Boolean active) {
-        this.active = active;
+    public AbstractEntity() {
+        this.isActive = false;
     }
 }

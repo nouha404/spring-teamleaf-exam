@@ -1,19 +1,14 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.response;
 
-import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Cours;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Professeur;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.SessionCours;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.Niveau;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.TypeSession;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.ProfesseurRepository;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.ETypeSession;
 import lombok.*;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
 
 
-
+/*
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
@@ -24,7 +19,7 @@ public class SessionCoursResponseDto {
     private LocalTime heureDebut;
     private LocalTime heureFin;
     private long nombreHeure;
-    private TypeSession typeSession;
+    private ETypeSession ETypeSession;
     private String cours;
     private long professeur;
     private String nomComplet;
@@ -38,10 +33,10 @@ public class SessionCoursResponseDto {
                 .nomComplet(sessionCours.getProfesseur().getNom()+" "+sessionCours.getProfesseur().getPrenom())
                 .heureFin(sessionCours.getHeureFin())
                 .nombreHeure(sessionCours.getNombreHeure())
-                .typeSession(sessionCours.getTypeSession())
+                .ETypeSession(sessionCours.getETypeSession())
                 .cours(sessionCours.getCours().getModule().getLibelle())
                 .professeur(sessionCours.getProfesseur().getId())
                 .build();
     }
 
-}
+}*/

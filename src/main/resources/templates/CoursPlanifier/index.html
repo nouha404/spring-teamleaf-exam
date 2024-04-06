@@ -48,7 +48,8 @@
                         <td th:text="${cp.etatCours}"></td>
 
                         <td>
-                            <a class="btn btn-outline-success">Action</a>
+                            <a th:href="@{/etudiants(coursId=${cp.id})}"
+                                    class="btn btn-outline-success">Voir etudiants</a>
                         </td>
                     </tr>
 

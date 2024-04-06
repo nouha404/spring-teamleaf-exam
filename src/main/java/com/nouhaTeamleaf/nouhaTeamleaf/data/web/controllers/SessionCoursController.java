@@ -37,4 +37,5 @@ public interface SessionCoursController {
             @RequestParam(name = "sessionId", required = false) Long sessionId
     );
 
+
 }

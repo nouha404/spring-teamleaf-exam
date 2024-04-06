@@ -18,15 +18,17 @@ public class Cours extends AbstractEntity {
     private EtatCours etatCours;
 
     @ManyToOne
-    Semestre semestre;
+    private Semestre semestre;
+
+    @OneToMany(mappedBy = "cours")
+    private List<Classe> classes;
     @ManyToOne
-    Professeur professeur;
-    @OneToOne
-    Module module;
-    //fetch = FetchType.EAGER charger les données en meme temps l'entité precedante
-    @OneToMany(mappedBy = "cours", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Module module;
+    @OneToMany(mappedBy = "cours")
     private List<SessionCours> sessionCours;
-    @OneToMany(mappedBy = "cours", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    List<Classe> classes;
+    @ManyToOne
+    private Professeur professeur;
+    @ManyToOne
+    private AnneeScolaire anneeScolaire;
 
 }

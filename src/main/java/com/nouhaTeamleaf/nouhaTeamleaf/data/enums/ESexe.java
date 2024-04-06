@@ -5,12 +5,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum Niveau {
-    L1(0),
-    L2(1),
-    L3(2),
-    M1(3),
-    M2(4);
+public enum ESexe {
+    MASCULIN(0),
+    FEMININ(1);
     private final long indexEnumEtat;
-
 }

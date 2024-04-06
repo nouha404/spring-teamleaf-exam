@@ -19,14 +19,9 @@ public class AnneeScolaire extends AbstractEntity {
     private String libelle;
     private LocalDate finDePeriod;
 
+    @OneToMany(mappedBy = "anneeScolaire", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Cours> cours;
 
     @OneToMany(mappedBy = "anneeScolaire", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Semestre> semestres;
-
-    @OneToMany(mappedBy = "anneeScolaire", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Classe> classes;
-
-
-
-
+    List<Inscription> inscriptions;
 }

@@ -1,5 +1,5 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers.Impl;
-
+/*
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Professeur;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.SessionCours;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.ProfesseurRepository;
@@ -75,3 +75,4 @@ public class SessionCoursControllerImpl implements SessionCoursController {
         return "SessionCours/sessionListProfeseur";
     }
 }
+*/

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CoursRepository extends JpaRepository<Cours,Long> {
-    Page<Cours> findAllByEtatCoursAndActiveTrue(EtatCours etatCours, Pageable pageable);
-    Page<Cours> findAllByActiveTrue(Pageable page);
+    //Page<Cours> findAllByEtatCoursAndActiveTrue(EtatCours etatCours, Pageable pageable);
+    Page<Cours> findAllByIsActiveTrue(Pageable page);
+
+
 }

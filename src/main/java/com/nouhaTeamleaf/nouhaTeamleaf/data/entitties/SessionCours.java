@@ -1,7 +1,7 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.entitties;
 
-import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EtatSession;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.TypeSession;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EEtatSession;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.ETypeSession;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,16 +21,18 @@ public class SessionCours extends AbstractEntity {
     private LocalTime heureDebut;
     private LocalTime heureFin;
     private long nombreHeure;
-    private TypeSession typeSession;
-    private EtatSession etatSession;
+    private ETypeSession typeSession;
+    private EEtatSession etatSession;
+
+    @OneToMany(mappedBy = "sessionCours", cascade = CascadeType.ALL)
+    private List<SessionCoursClasse> sessionCoursClasses;
+
+    @OneToMany(mappedBy = "sessionCours", cascade = CascadeType.ALL)
+    List<Absence> absences;
+
     @ManyToOne
     Cours cours;
     @ManyToOne
     Salle salle;
-    @ManyToOne(fetch = FetchType.EAGER)
-    Professeur professeur;
-    @ManyToOne
-    AttacheDeClasse attacheDeClasse;
-    @OneToMany(mappedBy = "sessionCours", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Absence> absences;
+
 }

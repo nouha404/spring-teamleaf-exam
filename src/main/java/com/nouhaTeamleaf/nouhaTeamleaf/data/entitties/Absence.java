@@ -25,8 +25,4 @@ public class Absence extends AbstractEntity {
     @ManyToOne
     Etudiant etudiant;
 
-    @OneToMany(mappedBy = "absence", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<AttacheDeClasse> attacheDeClasses;
-
-
 }
