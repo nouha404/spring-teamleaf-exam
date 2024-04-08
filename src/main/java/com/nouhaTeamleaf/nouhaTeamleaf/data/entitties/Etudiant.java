@@ -22,4 +22,7 @@ public class Etudiant extends AbstractEntity {
     private LocalDate dateNaissance;
     @OneToMany(mappedBy = "etudiant")
     private List<Inscription> inscriptions;
+
+    @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL)
+    private List<SessionCoursEtudiant> sessionCoursEtudiants;
 }

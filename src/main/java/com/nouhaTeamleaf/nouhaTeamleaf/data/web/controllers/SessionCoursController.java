@@ -17,11 +17,6 @@ public interface SessionCoursController {
             @RequestParam(defaultValue = "5", name = "size") int size,
             @RequestParam(defaultValue = "", name = "module") String module
     );
-
-    @GetMapping("/session/professeur/validate")
-    String validateSession(
-            @RequestParam(name = "id") long id
-    );
     @GetMapping("/session/professeur")
     String listSessionsByProfessorForCurrentMonth(
             Model model,
@@ -31,11 +26,18 @@ public interface SessionCoursController {
             @RequestParam(value = "module", required = false) String module
     );
 
+    /*@GetMapping("/session/professeur/validate")
+    String validateSession(
+            @RequestParam(name = "id") long id
+    );
+
+
+
     @PostMapping("/session/professeur/invalidate")
     String inValidateSession(
             @RequestParam(name = "id") Long id,
             @RequestParam(name = "sessionId", required = false) Long sessionId
-    );
+    );*/
 
 
 }

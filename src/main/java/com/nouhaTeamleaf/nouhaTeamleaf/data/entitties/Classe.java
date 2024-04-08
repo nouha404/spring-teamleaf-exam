@@ -28,10 +28,4 @@ public class Classe extends AbstractEntity {
 
     @OneToMany(mappedBy = "classe")
     List<SessionCoursClasse> sessionCoursClasses;
-
-
-
-
-
-
 }

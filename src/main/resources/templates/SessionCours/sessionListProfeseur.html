@@ -13,9 +13,9 @@
     <div class="card mt-1">
         <div class="card-header">
 
-            <div th:each="s:${sessions.get(0)}">
+            <!--<div th:each="s:${sessions.get(0)}">
                 <h4 th:text="${'Session de cours de : '  + s.nomComplet}"></h4>
-            </div>
+            </div>-->
             <div class="my- float-end">
 
             </div>
@@ -52,7 +52,7 @@
                     <td th:text="${s.heureDebut}"></td>
                     <td th:text="${s.heureFin}"></td>
                     <td th:text="${s.nombreHeure}"></td>
-                    <td th:text="${s.ETypeSession}"></td>
+                    <td th:text="${s.typeSession}"></td>
                     <td th:text="${s.cours}"></td>
 
                     <!--<td>
@@ -60,7 +60,7 @@
                     </td>-->
                     <td>
                         <form th:action="@{/session/professeur/invalidate}" method="post">
-                            <input type="hidden" name="id" id="id" th:value="${s.professeur}" />
+                            <input type="hidden" name="id" id="id" th:value="${s.id}" />
                             <input type="hidden" name="sessionId" th:value="${s.id}" />
                             <button type="submit" class="btn btn-outline-success">Invalider</button>
                         </form>

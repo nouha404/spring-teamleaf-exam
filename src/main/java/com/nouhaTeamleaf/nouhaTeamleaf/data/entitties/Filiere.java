@@ -18,6 +18,4 @@ public class Filiere extends AbstractEntity {
     private EFiliere eFiliere;
     @OneToMany(mappedBy = "filiere")
     List<Classe> classes;
-
-
 }

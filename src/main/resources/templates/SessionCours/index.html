@@ -20,14 +20,14 @@
             </div>
 
             <div class="card-body">
-                <form method="get" class="d-flex w-50 mb-5">
+                <!--<form method="get" class="d-flex w-50 mb-5">
                     <input type="search" name="module"
                            id="module" aria-label="search" class="mb-2"
                            th:value="${module}"
                            th:action="@{/session}"
                     >
                     <button type="submit" class="btn btn-outline-success ">Search</button>
-                </form>
+                </form-->
 
                 <table class="table table-bordered">
                     <thead>
@@ -45,11 +45,11 @@
                         <td th:text="${cl.heureDebut}"></td>
                         <td th:text="${cl.heureFin}"></td>
                         <td th:text="${cl.nombreHeure}"></td>
-                        <td th:text="${cl.ETypeSession}"></td>
+                        <td th:text="${cl.typeSession}"></td>
                         <td th:text="${cl.cours}"></td>
 
                         <td>
-                            <a class="btn btn-outline-success" th:href="@{/session/professeur(id=${cl.professeur})}" >Session du professeur</a>
+                            <a class="btn btn-outline-success" th:href="@{/session/professeur(id=${cl.id})}" >Session du professeur</a>
                         </td>
                     </tr>
 

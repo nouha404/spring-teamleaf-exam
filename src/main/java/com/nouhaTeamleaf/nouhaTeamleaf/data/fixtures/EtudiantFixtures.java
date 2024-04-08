@@ -31,7 +31,6 @@ public class EtudiantFixtures implements CommandLineRunner {
             etudiant.setMatricule(matricule);
             etudiant.setSexe(i%2==0 ? ESexe.FEMININ : ESexe.MASCULIN);
             etudiant.setIsActive(true);
-
             Date birthday = fakerConfig.faker().date().birthday(18,29);
             Instant instant = birthday.toInstant();
             LocalDate localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();

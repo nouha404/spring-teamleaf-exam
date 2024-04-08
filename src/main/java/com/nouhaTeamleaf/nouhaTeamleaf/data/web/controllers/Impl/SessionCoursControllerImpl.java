@@ -1,5 +1,5 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers.Impl;
-/*
+
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Professeur;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.SessionCours;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.ProfesseurRepository;
@@ -27,7 +27,7 @@ public class SessionCoursControllerImpl implements SessionCoursController {
             int page, int size,
             String module
     ) {
-        Page<SessionCours> sessionCours = sessionCoursService.getSessionCours(PageRequest.of(page,size),module);
+        Page<SessionCours> sessionCours = sessionCoursService.getSessionCours(module,PageRequest.of(page,size));
         Page<SessionCoursResponseDto> sessionCoursDto = sessionCours.map(SessionCoursResponseDto::toDto);
         model.addAttribute("sessionsCours", sessionCoursDto.getContent());
         model.addAttribute("pages",new int[sessionCoursDto.getTotalPages()]);
@@ -38,18 +38,14 @@ public class SessionCoursControllerImpl implements SessionCoursController {
         return "SessionCours/index";
     }
 
-    @Override
-    public String validateSession(long id) {
-        sessionCoursService.validateSessionCours(id);
-        return "redirect:/session/valide";
-    }
 
+    /*
     @Override
     public String inValidateSession(Long id,Long sessionId) {
         sessionCoursService.inValidateSessionCours(id,sessionId);
         System.out.println(id);
         return "redirect:/session?professeur?id"+id;
-    }
+    }*/
 
     @Override
     public String listSessionsByProfessorForCurrentMonth(
@@ -75,4 +71,3 @@ public class SessionCoursControllerImpl implements SessionCoursController {
         return "SessionCours/sessionListProfeseur";
     }
 }
-*/

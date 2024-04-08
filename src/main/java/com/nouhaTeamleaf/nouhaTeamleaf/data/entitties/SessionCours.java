@@ -34,5 +34,7 @@ public class SessionCours extends AbstractEntity {
     Cours cours;
     @ManyToOne
     Salle salle;
+    @OneToMany(mappedBy = "sessionCours", cascade = CascadeType.ALL)
+    private List<SessionCoursEtudiant> sessionCoursEtudiants;
 
 }

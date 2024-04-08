@@ -11,13 +11,16 @@ import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Order(14)
 @RequiredArgsConstructor
 //@Component
 public class SessionCoursFixtures implements CommandLineRunner {
     private final SessionCoursRepository sessionCoursRepository;
+    private final EtudiantRepository etudiantRepository;
     private final CoursRepository coursRepository;
     private final SalleRepository salleRepository;
 

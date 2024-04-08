@@ -14,11 +14,12 @@ public interface CoursController {
             @RequestParam(required = false, name = "etat") String etat
     );
 
-    @GetMapping("/etudiants")
+    @GetMapping("/cours/etudiants")
     String listeEtudiant(
             Model model,
-            @RequestParam("coursId") Long coursId,
+            @RequestParam(name="id") Long id,
+            @RequestParam(name="moduleId") Long moduleId,
             @RequestParam(defaultValue = "0", name = "page") int page,
-            @RequestParam(defaultValue = "5", name = "size") int size
+            @RequestParam(defaultValue = "10", name = "size") int size
     );
 }

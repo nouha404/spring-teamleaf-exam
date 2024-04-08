@@ -48,9 +48,10 @@
                         <td th:text="${cp.etatCours}"></td>
 
                         <td>
-                            <a th:href="@{/etudiants(coursId=${cp.id})}"
+                            <a th:href="@{/cours/etudiants(id=${cp.id})}"
                                     class="btn btn-outline-success">Voir etudiants</a>
                         </td>
+                        <!--session/professeur(id=${cl.id})-->
                     </tr>
 
                     </tbody>

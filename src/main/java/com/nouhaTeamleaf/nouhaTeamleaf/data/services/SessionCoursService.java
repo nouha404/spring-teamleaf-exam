@@ -1,0 +1,15 @@
+package com.nouhaTeamleaf.nouhaTeamleaf.data.services;
+
+import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Etudiant;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.SessionCours;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+public interface SessionCoursService {
+    Page<SessionCours> getSessionCours(String module,Pageable page);
+    Page<SessionCours> getSessionsByProfessorForCurrentMonth(Pageable pageable,Long professorId,String module);
+
+    Page<Etudiant> getEtudiantByCours(Long etudiantId, Pageable page);
+    Page<Etudiant> getEtudiantByModuleAndCours(Long sessionId, Long moduleId, Pageable page);
+}

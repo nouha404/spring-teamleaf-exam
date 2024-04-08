@@ -1,7 +1,8 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers.Impl;
-/*
+
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Cours;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Etudiant;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.InscriptionRepository;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.services.CoursService;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.services.SessionCoursService;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers.CoursController;
@@ -37,16 +38,19 @@ public class CoursControllerImpl implements CoursController {
         return "CoursPlanifier/index";
     }
 
+
     @Override
     public String listeEtudiant(
             Model model,
-            Long coursId, int page,
+            Long id, Long moduleId,int page,
             int size
     ) {
-        Page<Etudiant> etudiants = sessionCoursService.getEtudiantsByCours(coursId, PageRequest.of(page, size));
+        Page<Etudiant> etudiants = sessionCoursService.getEtudiantByModuleAndCours(id,moduleId, PageRequest.of(page, size));
+        //Page<Etudiant> etudiants = sessionCoursService.getEtudiantByCours(id, PageRequest.of(page, size));
         Page<EtudiantResponseDto> etudiantDto = etudiants.map(EtudiantResponseDto::toDto);
 
         model.addAttribute("etudiants", etudiants.getContent());
+        model.addAttribute("id",id);
         model.addAttribute("pages",new int[etudiantDto.getTotalPages()]);
         model.addAttribute("currentPage",page);
         model.addAttribute("nextPage", page < etudiantDto.getTotalPages() - 1 ? page+1:page);
@@ -54,4 +58,4 @@ public class CoursControllerImpl implements CoursController {
 
         return "CoursPlanifier/etudiants";
     }
-}*/
+}

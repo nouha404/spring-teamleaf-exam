@@ -1,6 +1,7 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.response;
 
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.SessionCours;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EEtatSession;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.ETypeSession;
 import lombok.*;
 
@@ -8,7 +9,7 @@ import java.time.LocalTime;
 import java.util.Date;
 
 
-/*
+
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
@@ -19,10 +20,10 @@ public class SessionCoursResponseDto {
     private LocalTime heureDebut;
     private LocalTime heureFin;
     private long nombreHeure;
-    private ETypeSession ETypeSession;
+    private ETypeSession typeSession;
+    private String etatSession;
     private String cours;
-    private long professeur;
-    private String nomComplet;
+    private String salle;
 
     public  static SessionCoursResponseDto toDto(SessionCours sessionCours) {
 
@@ -30,13 +31,12 @@ public class SessionCoursResponseDto {
                 .id(sessionCours.getId())
                 .date(sessionCours.getDate())
                 .heureDebut(sessionCours.getHeureDebut())
-                .nomComplet(sessionCours.getProfesseur().getNom()+" "+sessionCours.getProfesseur().getPrenom())
                 .heureFin(sessionCours.getHeureFin())
                 .nombreHeure(sessionCours.getNombreHeure())
-                .ETypeSession(sessionCours.getETypeSession())
+                .typeSession(sessionCours.getTypeSession())
+                .etatSession(sessionCours.getTypeSession().name())
                 .cours(sessionCours.getCours().getModule().getLibelle())
-                .professeur(sessionCours.getProfesseur().getId())
                 .build();
     }
 
-}*/
+}
