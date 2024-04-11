@@ -39,13 +39,6 @@ public class SessionCoursControllerImpl implements SessionCoursController {
     }
 
 
-    /*
-    @Override
-    public String inValidateSession(Long id,Long sessionId) {
-        sessionCoursService.inValidateSessionCours(id,sessionId);
-        System.out.println(id);
-        return "redirect:/session?professeur?id"+id;
-    }*/
 
     @Override
     public String listSessionsByProfessorForCurrentMonth(
@@ -62,12 +55,25 @@ public class SessionCoursControllerImpl implements SessionCoursController {
 
 
         model.addAttribute("id",id);
-        model.addAttribute("nom",professeur.getPrenom());
+        model.addAttribute("nom",professeur.getPrenom()+" "+professeur.getNom());
         model.addAttribute("pages",new int[sessionCoursDto.getTotalPages()]);
         model.addAttribute("currentPage",page);
         model.addAttribute("nextPage", page < sessionCoursDto.getTotalPages() - 1 ? page+1:page);
         model.addAttribute("PreviousPage", page > 0 ? page-1:page);
 
         return "SessionCours/sessionListProfeseur";
+    }
+
+    @Override
+    public String inValidateSession(Long id,Long sessionId) {
+        sessionCoursService.inValidateSessionCours(id,sessionId);
+        System.out.println(id);
+        return "redirect:/session?professeur?id"+id;
+    }
+
+    @Override
+    public String validateSession(Long id,Long sessionId) {
+        sessionCoursService.validateSessionCours(id,sessionId);
+        return "redirect:/session?professeur?id=" + id;
     }
 }

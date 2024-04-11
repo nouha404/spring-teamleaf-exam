@@ -17,4 +17,6 @@ public class SessionCoursEtudiant extends AbstractEntity{
     private SessionCours sessionCours;
     @ManyToOne
     private Etudiant etudiant;
+    @ManyToOne
+    private Classe classe;
 }

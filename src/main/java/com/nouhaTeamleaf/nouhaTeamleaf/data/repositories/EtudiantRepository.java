@@ -11,5 +11,4 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface EtudiantRepository extends JpaRepository<Etudiant,Long> {
-
 }

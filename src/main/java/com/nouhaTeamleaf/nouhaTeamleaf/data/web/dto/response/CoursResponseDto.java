@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Builder
 public class CoursResponseDto {
     private Long id;
-    private String nbreHeureGlobal;
+    private long nbreHeureGlobal;
     private EtatCours  etatCours;
     private String professeur;
     private String semestre;

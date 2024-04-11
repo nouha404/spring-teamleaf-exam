@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Order(15)
+@Order(15) //15
 @RequiredArgsConstructor
 //@Component
 public class SessionCoursClasseFixtures implements CommandLineRunner {

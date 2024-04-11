@@ -1,9 +1,12 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers;
 
-import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EtatCours;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.CoursRequestDto;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public interface CoursController {
     @GetMapping("/cours")
@@ -14,12 +17,24 @@ public interface CoursController {
             @RequestParam(required = false, name = "etat") String etat
     );
 
+
+    @PostMapping("/save-cours")
+    String saveCours(
+            Model model,
+            CoursRequestDto coursRequestDto,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes
+    );
+
+    @GetMapping("/show-form")
+    String showCoursForm(Model model);
+
+    /*
     @GetMapping("/cours/etudiants")
     String listeEtudiant(
             Model model,
             @RequestParam(name="id") Long id,
-            @RequestParam(name="moduleId") Long moduleId,
             @RequestParam(defaultValue = "0", name = "page") int page,
             @RequestParam(defaultValue = "10", name = "size") int size
-    );
+    );*/
 }

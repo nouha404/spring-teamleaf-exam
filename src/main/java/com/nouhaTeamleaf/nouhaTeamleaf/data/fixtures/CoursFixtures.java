@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Order(12)
+@Order(12) //12
 @RequiredArgsConstructor
 //@Component
 public class CoursFixtures implements CommandLineRunner {
@@ -22,7 +22,6 @@ public class CoursFixtures implements CommandLineRunner {
     private final ProfesseurRepository professeurRepository;
     private final ModuleRepository moduleRepository;
     private final AnneeScolaireRepository anneeScolaireRepository;
-    private final FakerConfig fakerConfig;
     @Override
     public void run(String... args) throws Exception {
 
@@ -35,14 +34,13 @@ public class CoursFixtures implements CommandLineRunner {
                 Module module = moduleRepository.findById(i).orElse(null);
 
                 Cours cours = new Cours();
-                cours.setNbreHeureGlobal("20");
+                cours.setNbreHeureGlobal(20);
                 cours.setEtatCours(i%2==0 ? EtatCours.TERMINER: EtatCours.EN_COURS);
                 cours.setIsActive(true);
                 cours.setAnneeScolaire(anneeScolaire);
 
                 cours.setModule(module);
                 cours.setSemestre(semestre);
-                cours.setClasses(classeList);
                 cours.setProfesseur(professeur);
 
 

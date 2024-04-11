@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Order(13)
+@Order(13) //13
 @RequiredArgsConstructor
 //@Component
 public class SalleFixtures implements CommandLineRunner {

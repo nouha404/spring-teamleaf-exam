@@ -26,9 +26,10 @@ public interface SessionCoursController {
             @RequestParam(value = "module", required = false) String module
     );
 
-    /*@GetMapping("/session/professeur/validate")
+    @PostMapping("/session/validate")
     String validateSession(
-            @RequestParam(name = "id") long id
+            @RequestParam(name = "id") Long id,
+            @RequestParam(name = "sessionId", required = false) Long sessionId
     );
 
 
@@ -37,7 +38,8 @@ public interface SessionCoursController {
     String inValidateSession(
             @RequestParam(name = "id") Long id,
             @RequestParam(name = "sessionId", required = false) Long sessionId
-    );*/
+    );
+
 
 
 }

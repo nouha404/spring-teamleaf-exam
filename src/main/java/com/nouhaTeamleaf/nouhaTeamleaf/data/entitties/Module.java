@@ -2,6 +2,7 @@ package com.nouhaTeamleaf.nouhaTeamleaf.data.entitties;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 @Table(name = "modules")
 public class Module extends AbstractEntity {
     private String libelle;

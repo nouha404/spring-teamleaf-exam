@@ -20,6 +20,4 @@ public class Niveau extends AbstractEntity{
     List<Semestre> semestres;
     @OneToMany(mappedBy = "niveau")
     List<Classe> classes;
-
-
 }

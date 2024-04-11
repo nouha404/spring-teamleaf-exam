@@ -19,6 +19,7 @@ import java.util.List;
 public class ClasseFixtures implements CommandLineRunner {
     private final ClasseRepository classeRepository;
     private final FiliereRepository filiereRepository;
+    private final CoursRepository coursRepository;
     private final NiveauRepository niveauRepository;
 
     @Override
@@ -34,7 +35,6 @@ public class ClasseFixtures implements CommandLineRunner {
                         classe.setIsActive(true);
                         classe.setNiveau(niveau);
                         classe.setFiliere(fl);
-
                         classeRepository.save(classe);
                     }
                 }

@@ -13,9 +13,9 @@
     <div class="card mt-1">
         <div class="card-header">
 
-            <!--<div th:each="s:${sessions.get(0)}">
-                <h4 th:text="${'Session de cours de : '  + s.nomComplet}"></h4>
-            </div>-->
+            <div>
+                <h4 th:text="${'Session de cours de : '  + nom}"></h4>
+            </div>
             <div class="my- float-end">
 
             </div>
@@ -38,29 +38,27 @@
 
             <table class="table table-bordered">
                 <thead>
-                <th>Date</th>
-                <th>Heure debut</th>
-                <th>Heure fin</th>
-                <th>Nombre heure</th>
+                <th>Heure Globale</th>
+                <th>Heure restant</th>
                 <th>Type Session</th>
+                <th>ETAT</th>
                 <th>Module</th>
                 </thead>
                 <tbody>
 
                 <tr th:each="s : ${sessions}">
-                    <td th:text="${s.date}"></td>
-                    <td th:text="${s.heureDebut}"></td>
-                    <td th:text="${s.heureFin}"></td>
-                    <td th:text="${s.nombreHeure}"></td>
+                    <td th:text="${s.heuresGlobales}"></td>
+                    <td th:text="${s.heuresRestantes}"></td>
                     <td th:text="${s.typeSession}"></td>
+                    <td th:text="${s.etatSession}"></td>
                     <td th:text="${s.cours}"></td>
 
-                    <!--<td>
-                        <a class="btn btn-outline-success" th:href="@{/session/professeur(id=${s.professeur}, sessionId=${s.id})}" >Invalider</a>
-                    </td>-->
+
+
+
                     <td>
                         <form th:action="@{/session/professeur/invalidate}" method="post">
-                            <input type="hidden" name="id" id="id" th:value="${s.id}" />
+                            <input type="hidden" name="id" id="id" th:value="${s.professeurId}" />
                             <input type="hidden" name="sessionId" th:value="${s.id}" />
                             <button type="submit" class="btn btn-outline-success">Invalider</button>
                         </form>

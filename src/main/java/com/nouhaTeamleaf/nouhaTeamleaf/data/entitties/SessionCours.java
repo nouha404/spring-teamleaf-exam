@@ -20,7 +20,11 @@ public class SessionCours extends AbstractEntity {
     private Date date;
     private LocalTime heureDebut;
     private LocalTime heureFin;
-    private long nombreHeure;
+
+    private long nombreHeurePlanifier;
+    private LocalTime heuresEffectuees;
+    private LocalTime heuresRestantes;
+
     private ETypeSession typeSession;
     private EEtatSession etatSession;
 
@@ -36,5 +40,6 @@ public class SessionCours extends AbstractEntity {
     Salle salle;
     @OneToMany(mappedBy = "sessionCours", cascade = CascadeType.ALL)
     private List<SessionCoursEtudiant> sessionCoursEtudiants;
+
 
 }

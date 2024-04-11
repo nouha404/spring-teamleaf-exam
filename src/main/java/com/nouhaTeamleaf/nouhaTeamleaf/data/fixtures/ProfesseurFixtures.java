@@ -34,7 +34,5 @@ public class ProfesseurFixtures implements CommandLineRunner {
             professeur.setIsActive(true);
             professeurRepository.save(professeur);
         }
-
-
     }
 }

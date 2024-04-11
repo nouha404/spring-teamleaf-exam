@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -21,11 +22,15 @@ public class Classe extends AbstractEntity {
     private Filiere filiere;
     @ManyToOne
     private Niveau niveau;
-    @ManyToOne
-    Cours cours;
+    /*@ManyToOne
+    Cours cours;*/
+    @OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
+    private List<SessionCoursEtudiant> sessionCoursEtudiants;
+
     @OneToMany(mappedBy = "classe")
     private List<ClasseModule> classeModules;
 
     @OneToMany(mappedBy = "classe")
     List<SessionCoursClasse> sessionCoursClasses;
+
 }

@@ -23,6 +23,5 @@ public class FiliereFixtures implements CommandLineRunner {
             filiereRepository.save(filiere);
         }
 
-
     }
 }

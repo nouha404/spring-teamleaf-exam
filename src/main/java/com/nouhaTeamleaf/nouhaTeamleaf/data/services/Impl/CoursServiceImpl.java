@@ -1,11 +1,12 @@
 package com.nouhaTeamleaf.nouhaTeamleaf.data.services.Impl;
 
-import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Cours;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Etudiant;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Inscription;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.*;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Module;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EtatCours;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.CoursRepository;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.*;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.services.CoursService;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.services.ProfesseurService;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.CoursRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CoursServiceImpl implements CoursService {
     private final CoursRepository coursRepository;
+    private final ModulesRepository modulesRepository;
+    private final AnneeScolaireRepository anneeScolaireRepository;
+    private final ProfesseurRepository professeurRepository;
+    private final SemestreRepository semestreRepository;
     @Override
     public Page<Cours> getCours(String etatCours, Pageable page) {
         if (etatCours != null && !etatCours.isEmpty()) {
@@ -30,7 +35,22 @@ public class CoursServiceImpl implements CoursService {
     }
 
     @Override
-    public Page<Etudiant> getEtudiantsByCours(Long coursId, Pageable pageable) {
-        return null;
+    public void addCours(CoursRequestDto dto) {
+        Cours cours = dto.TransformToEntity();
+        AnneeScolaire anneeScolaire = anneeScolaireRepository.findByIsActiveTrue();
+        cours.setAnneeScolaire(anneeScolaire);
+        cours.setModule(dto.getModule());
+        cours.setSemestre(dto.getSemestre());
+        cours.setProfesseur(dto.getProfesseur());
+        cours.setIsActive(true);
+        cours.setEtatCours(EtatCours.EN_COURS);
+        cours.setNbreHeureGlobal(dto.getNbreHeureGlobal());
+        coursRepository.save(cours);
     }
+
+    @Override
+    public List<Module> getModules() {
+        return modulesRepository.findAll();
+    }
+
 }

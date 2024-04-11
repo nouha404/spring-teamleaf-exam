@@ -14,7 +14,7 @@
             <div class="card-header">
                 <h3>Liste des cours planifier</h3>
                 <div class="my- float-end">
-                    <a  class="btn btn-outline-info " th:href="@{/admin/show-client-form}">Nouveau</a>
+                    <a  class="btn btn-outline-info " th:href="@{/show-form}">Nouveau</a>
 
                 </div>
             </div>
@@ -51,6 +51,12 @@
                             <a th:href="@{/cours/etudiants(id=${cp.id})}"
                                     class="btn btn-outline-success">Voir etudiants</a>
                         </td>
+
+                        <td  th:if="${cp.etatCours=='TERMINER'}">
+                            <a th:href="@{/cours/etudiants(id=${cp.id})}"
+                               class="btn btn-outline-success">Valider</a>
+                        </td>
+
                         <!--session/professeur(id=${cl.id})-->
                     </tr>
 

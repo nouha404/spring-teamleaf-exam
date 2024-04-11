@@ -14,8 +14,7 @@
             <div class="card-header">
                 <h3>Liste des sessions de cours qui ont été faites</h3>
                 <div class="my- float-end">
-                    <a  class="btn btn-outline-info " th:href="@{/admin/show-client-form}">Nouveau</a>
-
+                    <a  class="btn btn-outline-info " th:href="@{/show-form}">Nouveau</a>
                 </div>
             </div>
 
@@ -34,9 +33,12 @@
                     <th>Date</th>
                     <th>Heure debut</th>
                     <th>Heure fin</th>
-                    <th>Nombre heure</th>
-                    <th>Lieu</th>
+                    <th>nbr Planifier</th>
+                    <th>nbr Globales</th>
+                    <th>NbH effetuer</th>
+                    <th>NbH Restante</th>
                     <th>Module</th>
+
                     </thead>
                     <tbody>
 
@@ -44,13 +46,33 @@
                         <td th:text="${cl.date}"></td>
                         <td th:text="${cl.heureDebut}"></td>
                         <td th:text="${cl.heureFin}"></td>
-                        <td th:text="${cl.nombreHeure}"></td>
-                        <td th:text="${cl.typeSession}"></td>
+
+                        <td th:text="${cl.nombreHeurePlanifier}"></td>
+                        <td th:text="${cl.heuresGlobales}"></td>
+                        <td th:text="${cl.heuresEffectuees}"></td>
+                        <td th:text="${cl.heuresRestantes}"></td>
                         <td th:text="${cl.cours}"></td>
+
+
 
                         <td>
                             <a class="btn btn-outline-success" th:href="@{/session/professeur(id=${cl.id})}" >Session du professeur</a>
                         </td>
+                        <td>
+                            <form th:action="@{/session/validate}" method="post">
+                                <input type="hidden" name="id" id="id" th:value="${cl.professeurId}" />
+                                <input type="hidden" name="sessionId" th:value="${cl.id}" />
+                                <button type="submit" class="btn btn-outline-success">Valider</button>
+                            </form>
+                        </td>
+                        <!--
+                        <form th:action="@{/session/validate}" method="post">
+                            <input type="hidden" name="professeurId" th:value="${professeurId}" />
+                            <input type="hidden" name="sessionId" th:value="${session.id}" />
+                            <button type="submit" class="btn btn-primary">Valider</button>
+                        </form>-->
+
+
                     </tr>
 
                     </tbody>
