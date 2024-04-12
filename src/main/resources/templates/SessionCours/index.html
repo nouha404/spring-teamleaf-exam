@@ -14,11 +14,33 @@
             <div class="card-header">
                 <h3>Liste des sessions de cours qui ont été faites</h3>
                 <div class="my- float-end">
-                    <a  class="btn btn-outline-info " th:href="@{/show-form}">Nouveau</a>
+                    <a  class="btn btn-outline-info " th:href="@{/sessionCoursForm}">Nouveau</a>
                 </div>
             </div>
 
             <div class="card-body">
+                <form method="get" class="d-flex w-50 mb-5">
+                    <div class="form-group">
+                        <select class="form-select" id="professeur" name="professeurId">
+                            <option value="">Tous les professeurs</option>
+                            <option th:each="professeur : ${professeurs}"
+                                    th:value="${professeur.id}"
+                                    th:text="${professeur.nomComplet}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-select" id="module" name="module">
+                            <option value="">Tous les modules</option>
+                            <!-- Boucle sur la liste des modules -->
+                            <option th:each="module : ${modules}"
+                                    th:value="${module.id}"
+                                    th:text="${module.libelle}">
+                            </option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-outline-success">Filtrer</button>
+                </form>
                 <!--<form method="get" class="d-flex w-50 mb-5">
                     <input type="search" name="module"
                            id="module" aria-label="search" class="mb-2"
@@ -26,7 +48,7 @@
                            th:action="@{/session}"
                     >
                     <button type="submit" class="btn btn-outline-success ">Search</button>
-                </form-->
+                </form>-->
 
                 <table class="table table-bordered">
                     <thead>

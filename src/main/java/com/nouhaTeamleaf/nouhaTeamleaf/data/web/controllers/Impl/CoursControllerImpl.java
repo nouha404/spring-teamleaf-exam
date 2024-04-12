@@ -2,14 +2,12 @@ package com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers.Impl;
 
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.*;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Module;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.ClasseRepository;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.InscriptionRepository;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.ModulesRepository;
-import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.SessionCoursRepository;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.services.*;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers.CoursController;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.CoursRequestDto;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.response.*;
+//import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,8 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 @Controller
 @RequiredArgsConstructor
@@ -101,6 +97,6 @@ public class CoursControllerImpl implements CoursController {
 
 
 
-        return "SessionCours/form-add-cours";
+        return "CoursPlanifier/form-add-cours";
     }
 }

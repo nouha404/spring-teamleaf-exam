@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface CoursService {
     Page<Cours> getCours(String etatCours, Pageable page);
+    List<Cours> getCours();
 
     void addCours(CoursRequestDto dto);
     List<Module> getModules();

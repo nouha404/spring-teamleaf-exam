@@ -4,6 +4,7 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.*;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EEtatSession;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.*;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.services.SessionCoursService;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.SessionCoursRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +23,16 @@ public class SessionCoursServiceImpl implements SessionCoursService {
     private final CoursRepository coursRepository;
 
     @Override
-    public Page<SessionCours> getSessionCours(String module,Pageable page) {
+    public Page<SessionCours> getSessionCours(String module,Long professeurId,Pageable page) {
         if (module != null && !module.isEmpty()) {
             return sessionCoursRepository.findByModule(module,page);
-        } else {
+        } else if (module != null && !module.isEmpty() && professeurId != null) {
+            return sessionCoursRepository.findByProfessorAndModule(page, professeurId, module);
+
+        } else if (professeurId != null) {
+            return sessionCoursRepository.findByProfessorForCurrentMonth(page, professeurId);
+        }
+        else {
             return sessionCoursRepository.findAllByIsActiveTrueAndEtatSessionIsTrue(page);
         }
     }
@@ -78,11 +85,35 @@ public class SessionCoursServiceImpl implements SessionCoursService {
 
     }
 
+    @Override
+    public void addSessionCours(SessionCoursRequestDto dto) {
+    SessionCours sessionCours = dto.TransformToEntity();
+    sessionCours.setTypeSession(dto.getTypeSession());
+    sessionCours.setEtatSession(dto.getEtatSession());
+    sessionCours.setHeureDebut(dto.getHeureDebut());
+    sessionCours.setHeureFin(dto.getHeureFin());
+    sessionCours.setSalle(dto.getSalle());
+    sessionCours.setCours(dto.getCours());
+    sessionCours.setDate(dto.getDate());
+    sessionCours.setIsActive(true);
+    LocalTime heureDebut = sessionCours.getHeureDebut();
+    LocalTime heureFin = sessionCours.getHeureFin();
+
+    //long heuresEffectuees = calculateHeurePlanifier(heureDebut, heureFin);
+    //long heuresRestantes = dto.getCours().getNbreHeureGlobal() - heuresEffectuees;
+
+    sessionCours.setSessionCoursClasses(dto.getSessionCoursClasses());
+    sessionCours.setSalle(dto.getSalle());
+    //sessionCours.setHeuresEffectuees(LocalTime.ofSecondOfDay(heuresEffectuees));
+    //sessionCours.setNombreHeurePlanifier(heuresEffectuees);
+    //sessionCours.setHeuresRestantes(LocalTime.ofSecondOfDay(heuresRestantes));
+    sessionCoursRepository.save(sessionCours);
+    }
+
 
     private long calculateHeurePlanifier(LocalTime heureDebut, LocalTime heureFin) {
         return heureFin.getHour() - heureDebut.getHour();
     }
-
 
 
     @Override

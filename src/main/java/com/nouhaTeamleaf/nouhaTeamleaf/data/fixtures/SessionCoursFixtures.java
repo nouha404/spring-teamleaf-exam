@@ -39,7 +39,6 @@ public class SessionCoursFixtures implements CommandLineRunner {
             long nombreHeure = duration.toHours();
             sessionCours.setNombreHeurePlanifier(nombreHeure);
 
-
             sessionCours.setTypeSession(typeSession);
             sessionCours.setEtatSession(i%2==0? EEtatSession.VALIDER : EEtatSession.INVALIDER);
 

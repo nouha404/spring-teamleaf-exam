@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,11 @@ public class CoursServiceImpl implements CoursService {
         } else {
             return coursRepository.findAllByIsActiveTrue(page);
         }
+    }
+
+    @Override
+    public List<Cours> getCours() {
+        return coursRepository.findAllByIsActiveTrue();
     }
 
     @Override

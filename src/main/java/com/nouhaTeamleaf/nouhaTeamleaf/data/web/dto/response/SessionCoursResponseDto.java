@@ -31,7 +31,6 @@ public class SessionCoursResponseDto {
     private long nombreHeurePlanifier;
     private long professeurId;
 
-
     public  static SessionCoursResponseDto toDto(SessionCours sessionCours) {
         long heuresGlobales = sessionCours.getCours().getNbreHeureGlobal(); //15
 
@@ -46,10 +45,8 @@ public class SessionCoursResponseDto {
         return SessionCoursResponseDto.builder()
                 .id(sessionCours.getId())
                 .date(sessionCours.getDate())
-
                 .heureDebut(sessionCours.getHeureDebut())
                 .heureFin(sessionCours.getHeureFin())
-
                 .heuresGlobales(sessionCours.getCours().getNbreHeureGlobal())
                 .heuresEffectuees(heuresEffectuees)
                 .heuresRestantes(heuresRestantes)
@@ -60,5 +57,4 @@ public class SessionCoursResponseDto {
                 .cours(sessionCours.getCours().getModule().getLibelle())
                 .build();
     }
-
 }

@@ -18,8 +18,10 @@ import java.util.List;
 @Table(name = "cours")
 public class Cours extends AbstractEntity {
     private long nbreHeureGlobal;
+    private long nombreHeurePlanifier;
+    private LocalTime heuresEffectuees;
+    private LocalTime heuresRestantes;
     private EtatCours etatCours;
-
     @ManyToOne
     private Semestre semestre;
 

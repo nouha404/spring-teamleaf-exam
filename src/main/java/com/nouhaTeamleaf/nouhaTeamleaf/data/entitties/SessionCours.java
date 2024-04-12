@@ -4,6 +4,7 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EEtatSession;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.ETypeSession;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 @Table(name = "sessionCours")
 public class SessionCours extends AbstractEntity {
     private Date date;

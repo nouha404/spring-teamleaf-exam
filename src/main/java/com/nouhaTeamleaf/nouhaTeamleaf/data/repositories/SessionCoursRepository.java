@@ -27,6 +27,8 @@ public interface SessionCoursRepository extends JpaRepository<SessionCours,Long>
     )
     Page<SessionCours> findByProfessorAndModule(Pageable pageable, @Param("professorId") Long professorId, @Param("module") String module);
 
+
+
     @Query(
             "SELECT sc FROM SessionCours sc " +
                     "JOIN sc.cours.professeur p " +

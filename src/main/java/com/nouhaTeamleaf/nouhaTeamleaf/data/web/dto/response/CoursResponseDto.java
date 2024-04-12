@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalTime;
+
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
@@ -23,6 +25,10 @@ public class CoursResponseDto {
     private Long professeurId;
     private Long moduleId;
 
+    private long nombreHeurePlanifier;
+    private LocalTime heuresEffectuees;
+    private LocalTime heuresRestantes;
+
     public  static CoursResponseDto toDto(Cours cours) {
 
         return CoursResponseDto.builder()
@@ -34,6 +40,11 @@ public class CoursResponseDto {
                 .module(cours.getModule().getLibelle())
                 .moduleId(cours.getModule().getId())
                 .professeurId(cours.getProfesseur().getId())
+
+                .nombreHeurePlanifier(cours.getNombreHeurePlanifier())
+                .heuresEffectuees(cours.getHeuresEffectuees())
+                .heuresRestantes(cours.getHeuresRestantes())
+
                 .build();
     }
 }
