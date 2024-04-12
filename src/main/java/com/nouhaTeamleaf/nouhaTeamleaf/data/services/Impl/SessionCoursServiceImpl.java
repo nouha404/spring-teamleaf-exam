@@ -59,6 +59,23 @@ public class SessionCoursServiceImpl implements SessionCoursService {
         sessionCours.setEtatSession(EEtatSession.INVALIDER);
         sessionCours.setIsActive(true);
 
+        LocalTime heureDebut = sessionCours.getHeureDebut();
+        LocalTime heureFin = sessionCours.getHeureFin();
+        long nombreHeurePlanifier = calculateHeurePlanifier(heureDebut, heureFin);
+        long nombreHeureEffectuer = calculateHeurePlanifier(heureDebut, heureFin);
+
+        long secondesRestantes = sessionCours.getHeuresRestantes().toSecondOfDay();
+        long secondesEffectuees = sessionCours.getHeuresEffectuees().toSecondOfDay();
+
+        long nouveauNombreHeurePlanifier = nombreHeurePlanifier - nombreHeureEffectuer;
+
+        secondesRestantes += nombreHeureEffectuer;
+        LocalTime heureRestante = LocalTime.ofSecondOfDay(secondesRestantes);
+        LocalTime heureEffectuee = LocalTime.ofSecondOfDay(secondesEffectuees);
+
+        sessionCours.setHeuresRestantes(heureRestante);
+        sessionCours.setHeuresEffectuees(heureEffectuee);
+        sessionCours.setNombreHeurePlanifier(nouveauNombreHeurePlanifier);
         sessionCoursRepository.save(sessionCours);
     }
 

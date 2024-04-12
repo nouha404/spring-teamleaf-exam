@@ -40,6 +40,7 @@
                 <thead>
                 <th>Heure Globale</th>
                 <th>Heure restant</th>
+                <th>Heure Planifier</th>
                 <th>Type Session</th>
                 <th>ETAT</th>
                 <th>Module</th>
@@ -49,6 +50,7 @@
                 <tr th:each="s : ${sessions}">
                     <td th:text="${s.heuresGlobales}"></td>
                     <td th:text="${s.heuresRestantes}"></td>
+                    <td th:text="${s.nombreHeurePlanifier}"></td>
                     <td th:text="${s.typeSession}"></td>
                     <td th:text="${s.etatSession}"></td>
                     <td th:text="${s.cours}"></td>
