@@ -7,6 +7,7 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.services.*;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers.SessionCoursController;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.SessionCoursRequestDto;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.response.*;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -143,7 +144,7 @@ public class SessionCoursControllerImpl implements SessionCoursController {
     }
 
     @Override
-    public String saveSessionCours(Model model, SessionCoursRequestDto sessionCoursRequestDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String saveSessionCours(Model model, @Valid SessionCoursRequestDto sessionCoursRequestDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()){
             Map<String, String> errors = new HashMap<>();
             //maintenant parcourir et les transformer en map

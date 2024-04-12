@@ -4,9 +4,9 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.*;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Module;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EEtatSession;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.ETypeSession;
-//import jakarta.validation.constraints.Future;
-//import jakarta.validation.constraints.NotNull;
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
+
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,19 +23,19 @@ import java.util.List;
 @Builder
 public class SessionCoursRequestDto {
     private Long id;
-    //@Future(message = "Entrez une date valide.")
+    @Future(message = "Entrez une date valide.")
     private Date date;
-    //@NotNull(message = "Champ requis.")
+    @NotNull(message = "Champ requis.")
     private LocalTime heureDebut;
-    //@NotNull(message = "Champ requis.")
+    @NotNull(message = "Champ requis.")
     private LocalTime heureFin;
-    //@NotNull(message = "Champ requis.")
+    @NotNull(message = "Champ requis.")
     private ETypeSession typeSession;
-    //@NotNull(message = "Champ requis.")
+    @NotNull(message = "Champ requis.")
     private EEtatSession etatSession;
-    //@NotNull(message = "Champ requis.")
+    @NotNull(message = "Champ requis.")
     private Cours cours;
-    // @NotNull(message = "Champ requis.")
+    @NotNull(message = "Champ requis.")
     private Salle salle;
     private List<SessionCoursClasse> sessionCoursClasses;
     public SessionCours TransformToEntity(){

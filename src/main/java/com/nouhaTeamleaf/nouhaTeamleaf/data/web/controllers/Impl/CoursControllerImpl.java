@@ -8,6 +8,7 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers.CoursController;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.CoursRequestDto;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.response.*;
 //import jakarta.validation.Valid;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -50,7 +51,7 @@ public class CoursControllerImpl implements CoursController {
     }
 
     @Override
-    public String saveCours(Model model, CoursRequestDto coursRequestDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String saveCours(Model model, @Valid CoursRequestDto coursRequestDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()){
             Map<String, String> errors = new HashMap<>();
             //maintenant parcourir et les transformer en map

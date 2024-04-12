@@ -2,6 +2,7 @@ package com.nouhaTeamleaf.nouhaTeamleaf.data.services.Impl;
 
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.*;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EEtatSession;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.exceptions.EntityNotFoundException;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.*;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.services.SessionCoursService;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.SessionCoursRequestDto;
@@ -82,7 +83,7 @@ public class SessionCoursServiceImpl implements SessionCoursService {
     @Override
     public void validateSessionCours(Long id, Long sessionId) {
         SessionCours sessionCours = sessionCoursRepository.findById(sessionId)
-                .orElseThrow(() -> new IllegalArgumentException("Session de cours non trouvée avec l'ID : " + sessionId));
+                .orElseThrow(() -> new EntityNotFoundException("Le SessionCours n'existe pas"));
         sessionCours.setEtatSession(EEtatSession.VALIDER);
 
         //les heures
@@ -135,7 +136,7 @@ public class SessionCoursServiceImpl implements SessionCoursService {
 
     @Override
     public Page<SessionCoursEtudiant> getEtudiantBySessionCours(Long sessionId, Pageable pageable) {
-        SessionCours sessionCours = sessionCoursRepository.findById(sessionId).orElse(null);
+        SessionCours sessionCours = sessionCoursRepository.findById(sessionId).orElseThrow(()->new EntityNotFoundException("Le SessionCours n'existe pas"));
         System.out.println(sessionCours);
         return sessionCoursEtudiantRepository.findBySessionCours(sessionCours,pageable);
     }
