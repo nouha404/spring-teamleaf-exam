@@ -1,7 +1,3 @@
-# Diagramme de classe
-
-
-
 
 ## Liste des sessions de cours  specifique
 <img src="vid/session.png">
@@ -23,3 +19,7 @@
 
 ## Formulaire planification d'un session de cours
 <img src="vid/img_6.png">
+
+# Diagramme de classe
+<img src="vid/img_7.png">
+<img src="vid/img_8.png">

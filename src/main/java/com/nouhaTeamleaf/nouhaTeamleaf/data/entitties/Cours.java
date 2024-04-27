@@ -30,7 +30,6 @@ public class Cours extends AbstractEntity {
     @OneToMany(mappedBy = "cours",cascade = CascadeType.ALL)
     private List<SessionCours> sessionCours;
 
-
     @ManyToOne
     private Professeur professeur;
     @ManyToOne

@@ -22,8 +22,7 @@ public class Classe extends AbstractEntity {
     private Filiere filiere;
     @ManyToOne
     private Niveau niveau;
-    /*@ManyToOne
-    Cours cours;*/
+
     @OneToMany(mappedBy = "classe", cascade = CascadeType.ALL)
     private List<SessionCoursEtudiant> sessionCoursEtudiants;
 
