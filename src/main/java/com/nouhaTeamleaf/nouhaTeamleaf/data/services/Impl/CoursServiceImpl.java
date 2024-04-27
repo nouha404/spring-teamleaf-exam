@@ -7,6 +7,8 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.repositories.*;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.services.CoursService;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.services.ProfesseurService;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.CoursRequestDto;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.SessionCoursRequestDto;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.response.CoursResponseDto;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -51,6 +53,7 @@ public class CoursServiceImpl implements CoursService {
         cours.setIsActive(true);
         cours.setEtatCours(EtatCours.EN_COURS);
         cours.setNbreHeureGlobal(dto.getNbreHeureGlobal());
+
         coursRepository.save(cours);
     }
 
@@ -58,5 +61,12 @@ public class CoursServiceImpl implements CoursService {
     public List<Module> getModules() {
         return modulesRepository.findAll();
     }
+
+    @Override
+    public  Cours  getDetailsCours(Long id) {
+        return coursRepository.findByIdAndIsActiveTrue(id);
+    }
+
+
 
 }

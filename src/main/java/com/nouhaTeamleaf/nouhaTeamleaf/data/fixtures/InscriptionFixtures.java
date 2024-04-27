@@ -28,7 +28,7 @@ public class InscriptionFixtures implements CommandLineRunner {
     public void run(String... args) throws Exception {
         AnneeScolaire anneeScolaire = anneeScolaireRepository.findByIsActiveTrue();
         List<Classe> classeList = classeRepository.findAll();
-        for (long i = 1L; i < 30L; i++){
+        for (long i = 1L; i < 5L; i++){
             Etudiant etudiant = etudiantRepository.findById(i).orElse(null);
             Inscription inscription = new Inscription();
             inscription.setIsActive(true);

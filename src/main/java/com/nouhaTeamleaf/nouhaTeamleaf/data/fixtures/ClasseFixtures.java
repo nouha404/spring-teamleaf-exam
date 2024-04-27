@@ -26,19 +26,16 @@ public class ClasseFixtures implements CommandLineRunner {
     public void run(String... args) throws Exception {
         for (ENiveau libelle : ENiveau.values()) {
             Niveau niveau = niveauRepository.findById(libelle.getIndexEnumEtat()).orElse(null);
-            for (EFiliere filiere : EFiliere.values() ){
+            for (EFiliere filiere : EFiliere.values()) {
                 Filiere fl = filiereRepository.findById(filiere.getIndexEnumEtat()).orElse(null);
-                if (niveau != null) {
-                    for (Long i = 1L; i < 3L; i++){
-                        Classe classe = new Classe();
-                        classe.setLibelle(libelle.name()+filiere.name());
-                        classe.setIsActive(true);
-                        classe.setNiveau(niveau);
-                        classe.setFiliere(fl);
-                        classeRepository.save(classe);
-                    }
+                if (niveau != null && fl != null) {
+                    Classe classe = new Classe();
+                    classe.setLibelle(libelle.name() + filiere.name());
+                    classe.setIsActive(true);
+                    classe.setNiveau(niveau);
+                    classe.setFiliere(fl);
+                    classeRepository.save(classe);
                 }
-
             }
         }
 

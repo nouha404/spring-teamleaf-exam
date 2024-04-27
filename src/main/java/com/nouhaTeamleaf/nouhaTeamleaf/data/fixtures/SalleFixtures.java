@@ -23,7 +23,7 @@ public class SalleFixtures implements CommandLineRunner {
     private final FakerConfig fakerConfig;
     @Override
     public void run(String... args) throws Exception {
-        for (long i = 1L; i < 20L; i++) {
+        for (long i = 1L; i < 5L; i++) {
             Salle salle = new Salle();
             salle.setNom("Salle "+i);
             salle.setNumber(fakerConfig.faker().numerify("###"));

@@ -23,6 +23,10 @@
                 <div class="mb-3">
                     <label for="nombreHeuresGlobal" class="form-label">Nombre d'heures global</label>
                     <input type="number" th:field="*{nbreHeureGlobal}" class="form-control" id="nombreHeuresGlobal" name="nombreHeuresGlobal" required>
+                    <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('nbreHeureGlobal')}"
+                           th:text="${errors.get('nbreHeureGlobal')}">
+
+                    </small>
                 </div>
 
                 <div class="mb-3">

@@ -8,15 +8,10 @@ import lombok.Getter;
 public enum Specialiter {
     INFORMATIQUE(0),
     MATHS(1),
-    PHYSIQUE(2),
-    ANGULAR(3),
-    JAVA(4),
-    MARKETING(5),
-    PYTHON(6),
-    GEOGRAPHIE(7),
-    ECONOMIE(8),
-    PHILOSOPHIE(9),
-    SPORT(10),
-    MUSIQUE(11);
+    ANGULAR(2),
+    JAVA(3),
+    MARKETING(4),
+    PYTHON(5),
+    PHILOSOPHIE(6);
     private final long indexEnumEtat;
 }

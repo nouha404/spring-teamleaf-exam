@@ -20,15 +20,17 @@ public class Cours extends AbstractEntity {
     private long nbreHeureGlobal;
     private long nombreHeurePlanifier;
     private LocalTime heuresEffectuees;
-    private LocalTime heuresRestantes;
+    private long heuresRestantes;
     private EtatCours etatCours;
     @ManyToOne
     private Semestre semestre;
 
     @ManyToOne
     private Module module;
-    @OneToMany(mappedBy = "cours")
+    @OneToMany(mappedBy = "cours",cascade = CascadeType.ALL)
     private List<SessionCours> sessionCours;
+
+
     @ManyToOne
     private Professeur professeur;
     @ManyToOne

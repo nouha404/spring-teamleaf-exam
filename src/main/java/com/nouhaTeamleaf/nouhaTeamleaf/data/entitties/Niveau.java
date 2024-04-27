@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -20,4 +21,5 @@ public class Niveau extends AbstractEntity{
     List<Semestre> semestres;
     @OneToMany(mappedBy = "niveau")
     List<Classe> classes;
+
 }

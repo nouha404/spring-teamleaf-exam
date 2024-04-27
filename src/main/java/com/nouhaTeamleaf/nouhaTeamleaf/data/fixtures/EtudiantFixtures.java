@@ -22,7 +22,7 @@ public class EtudiantFixtures implements CommandLineRunner {
     private final FakerConfig fakerConfig;
     @Override
     public void run(String... args) throws Exception {
-        for (long i = 1L; i < 30L; i++) {
+        for (long i = 1L; i < 10L; i++) {
             String nomComplet = fakerConfig.faker().name().fullName();
             String matricule = "MAT"+ fakerConfig.faker().numerify("######");
 

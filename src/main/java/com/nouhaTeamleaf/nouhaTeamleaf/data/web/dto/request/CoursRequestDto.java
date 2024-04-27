@@ -5,10 +5,13 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Module;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -16,25 +19,20 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CoursRequestDto {
     private Long id;
-    @NotBlank(message = "Le nom est obligatoire")
+    @Positive(message = "Le nombre d'heures global doit être un entier positif supérieur à zéro")
     private long nbreHeureGlobal;
-    @NotNull(message = "Ce Champ est requis.")
     private Semestre semestre;
-    @NotNull(message = "Ce Champ est requis.")
     private Module module;
-    @NotNull(message = "Ce Champ est requis.")
     private Professeur professeur;
-    @NotNull(message = "Ce Champ est requis.")
     private AnneeScolaire anneeScolaire;
-
-
     public Cours TransformToEntity(){
         return Cours.builder()
                 .nbreHeureGlobal(nbreHeureGlobal)
-                .anneeScolaire(new AnneeScolaire())
-                .semestre(new Semestre())
-                .module(new Module())
-                .professeur(new Professeur())
+                .anneeScolaire(anneeScolaire)
+                .semestre(semestre)
+                .module(module)
+                .professeur(professeur)
                 .build();
+
     }
 }

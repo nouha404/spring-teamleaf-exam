@@ -38,27 +38,31 @@
 
             <table class="table table-bordered">
                 <thead>
-                <th>Heure Globale</th>
-                <th>Heure restant</th>
+                <th>Module</th>
                 <th>Heure Planifier</th>
                 <th>Type Session</th>
                 <th>ETAT</th>
-                <th>Module</th>
                 </thead>
                 <tbody>
 
                 <tr th:each="s : ${sessions}">
-                    <td th:text="${s.heuresGlobales}"></td>
-                    <td th:text="${s.heuresRestantes}"></td>
+                    <td th:text="${s.cours}"></td>
                     <td th:text="${s.nombreHeurePlanifier}"></td>
                     <td th:text="${s.typeSession}"></td>
-                    <td th:text="${s.etatSession}"></td>
-                    <td th:text="${s.cours}"></td>
+
+
+                    <!--<td th:text="${s.cours}"></td>-->
 
 
 
 
                     <td>
+                        <form th:action="@{/session/professeur/validate}" method="post">
+                            <input type="hidden" name="id" id="id" th:value="${s.professeurId}" />
+                            <input type="hidden" name="sessionId" th:value="${s.id}" />
+                            <button type="submit" class="btn btn-outline-success">Valider</button>
+                        </form>
+
                         <form th:action="@{/session/professeur/invalidate}" method="post">
                             <input type="hidden" name="id" id="id" th:value="${s.professeurId}" />
                             <input type="hidden" name="sessionId" th:value="${s.id}" />

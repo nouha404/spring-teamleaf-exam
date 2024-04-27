@@ -22,7 +22,7 @@ public class ProfesseurFixtures implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        for (long i = 1L; i < 20L; i++) {
+        for (long i = 1L; i < 5L; i++) {
             List<ProfesseurClasse> professeurClasseList = professeurClasseRepository.findAll();
             Professeur professeur = new Professeur();
 

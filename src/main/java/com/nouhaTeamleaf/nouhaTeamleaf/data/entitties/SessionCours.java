@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
@@ -19,14 +20,10 @@ import java.util.List;
 @Builder
 @Table(name = "sessionCours")
 public class SessionCours extends AbstractEntity {
-    private Date date;
+    private LocalDate date;
     private LocalTime heureDebut;
     private LocalTime heureFin;
-
     private long nombreHeurePlanifier;
-    private LocalTime heuresEffectuees;
-    private LocalTime heuresRestantes;
-
     private ETypeSession typeSession;
     private EEtatSession etatSession;
 

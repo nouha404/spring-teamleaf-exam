@@ -19,6 +19,8 @@ public interface SessionCoursService {
     void inValidateSessionCours(Long id,Long sessionId);
     void validateSessionCours(Long id,Long sessionId);
 
-    void addSessionCours(SessionCoursRequestDto dto);
+    void addSessionCours(SessionCoursRequestDto dto,Long coursId);
     Page<SessionCoursEtudiant> getEtudiantBySessionCours(Long sessionId,Pageable pageable);
+
+    void tester(SessionCoursRequestDto dto);
 }

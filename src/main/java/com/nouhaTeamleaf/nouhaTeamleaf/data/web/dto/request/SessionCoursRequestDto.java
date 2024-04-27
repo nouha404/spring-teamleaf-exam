@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
@@ -23,34 +24,31 @@ import java.util.List;
 @Builder
 public class SessionCoursRequestDto {
     private Long id;
-    @Future(message = "Entrez une date valide.")
-    private Date date;
-    @NotNull(message = "Champ requis.")
+    @NotNull(message = "La date ne peut pas être nulle")
+    @Future(message = "La date doit être dans le futur")
+    private LocalDate date;
+    @NotNull(message = "L'heure de début ne peut pas être nulle")
     private LocalTime heureDebut;
-    @NotNull(message = "Champ requis.")
+    @NotNull(message = "L'heure de fin ne peut pas être nulle")
     private LocalTime heureFin;
-    @NotNull(message = "Champ requis.")
     private ETypeSession typeSession;
-    @NotNull(message = "Champ requis.")
     private EEtatSession etatSession;
-    @NotNull(message = "Champ requis.")
+
     private Cours cours;
-    @NotNull(message = "Champ requis.")
     private Salle salle;
     private List<SessionCoursClasse> sessionCoursClasses;
     public SessionCours TransformToEntity(){
-        Duration duration = Duration.between(heureDebut, heureFin);
 
         return SessionCours.builder()
                 .date(date)
                 .heureDebut(heureDebut)
                 .heureFin(heureFin)
+                .cours(new Cours())
+                .date(date)
                 .etatSession(EEtatSession.INVALIDER)
-                .nombreHeurePlanifier(duration.toHours())
                 .sessionCoursClasses(sessionCoursClasses)
                 .typeSession(typeSession)
-                .cours(new Cours())
-                .salle(new Salle())
+                .salle(salle)
                 .build();
     }
 }

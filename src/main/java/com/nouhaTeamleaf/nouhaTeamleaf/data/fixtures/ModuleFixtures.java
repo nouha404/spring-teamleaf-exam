@@ -23,7 +23,7 @@ public class ModuleFixtures implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        for (long i = 1L; i < 20L; i++) {
+        for (long i = 1L; i < 10L; i++) {
             Module module = new Module();
             module.setIsActive(true);
             module.setLibelle(fakerConfig.faker().educator().course());

@@ -12,59 +12,60 @@
 <div class="container mt-2" layout:fragment="contentForView">
     <div class="card mt-1">
         <div class="card-header">
-            <h3>Ajouter un cours</h3>
+            <h3>Planification de la session de cours</h3>
         </div>
         <div class="card-body">
-            <form method="POST" th:action="@{/save-type-session}" >
+            <!-- Formulaire pour le type de session -->
+            <form method="POST" th:action="@{/save-type-session/{id}(id=${id})}">
                 <div class="mb-3">
-                    <label for="typeSession" class="form-label">Type session de cours</label>
-                    <select id="typeSession" name="typeSession" required>
+                    <label for="typeSession" class="form-label">Type de session de cours</label>
+                    <select id="typeSession" name="typeSession" class="form-select">
                         <option value="PRESENTIEL">Présentiel</option>
                         <option value="EN_LIGNE">En ligne</option>
                     </select>
-                    <button type="submit" class="btn btn-success">Ok</button>
+                    <button type="submit" class="btn btn-success mt-2">Ok</button>
                 </div>
             </form>
 
-            <form method="POST" th:action="@{/save-sessionCours}" th:object="${sessionCoursForm}">
+            <!-- Formulaire pour la session de cours -->
+            <form method="POST" th:action="@{/save-sessionCours/nouveau/{id}(id=${id})}" th:object="${sessionCoursForm}">
+                <!--<input type="hidden" th:field="*{id}" th:value="${id}" />-->
+                <input type="hidden" th:field="*{cours.id}" th:value="${coursId}" />
 
                 <div class="mb-3">
                     <label for="date" class="form-label">Date de la session</label>
-                    <input type="date" th:field="*{date}" class="form-control" id="date" name="date" required>
-                </div>
+                    <input type="date" th:field="*{date}" class="form-control" id="date" name="date" >
+                    <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('date')}"
+                           th:text="${errors.get('date')}"></small>
 
-
-                <div class="mb-3">
-                    <label for="heureDebut" class="form-label">Heure de Début</label>
-                    <input type="number" th:field="*{heureDebut}" class="form-control" id="heureDebut" name="heureDebut" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="heureFin" class="form-label">Heure de Fin</label>
-                    <input type="number" th:field="*{heureFin}" class="form-control" id="heureFin" name="heureFin" required>
+                    <label for="heureDebut" class="form-label">Heure de début</label>
+                    <input type="time" th:field="*{heureDebut}" class="form-control" id="heureDebut" name="heureDebut" >
+                    <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('heureDebut')}"
+                           th:text="${errors.get('heureDebut')}"></small>
                 </div>
 
                 <div class="mb-3">
-                    <label for="classes" class="form-label">Classes</label>
-                    <select multiple class="form-select" th:field="*{sessionCoursClasses}" required>
+                    <label for="heureFin" class="form-label">Heure de fin</label>
+                    <input type="time" th:field="*{heureFin}" class="form-control" id="heureFin" name="heureFin">
+                    <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('heureFin')}"
+                           th:text="${errors.get('heureFin')}"></small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="sessionCoursClasses" class="form-label">Classes</label>
+                    <select multiple class="form-select" th:field="*{sessionCoursClasses}">
                         <option th:each="classe : ${classeelectForm}" th:value="${classe.id}" th:text="${classe.libelle}">
                             Choisir une classe
                         </option>
                     </select>
                 </div>
 
-                <!--<div class="mb-3">
-                    <label for="typeSession" class="form-label">Type session de cours</label>
-                    <select id="typeSession" name="typeSession" required>
-                        <option value="PRESENTIEL">Présentiel</option>
-                        <option value="EN_LIGNE">En ligne</option>
-                    </select>
-                    <button type="submit" class="btn btn-success">Ok</button>
-                </div>-->
-
-                <div class="mb-3" id="salleSelect" th:if="${showSalleSelect}">
+                <div class="mb-3" th:if="${showSalleSelect}">
                     <label for="salle" class="form-label">Salle</label>
-                    <select class="form-select" th:field="*{salle}" required>
+                    <select class="form-select" th:field="*{salle}">
                         <option th:each="salle: ${salleSelectForm}" th:value="${salle.id}" th:text="${salle.libelle}">
                             Choisir une salle
                         </option>
@@ -78,7 +79,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+
 </body>
 </html>
-
-

@@ -3,6 +3,7 @@ package com.nouhaTeamleaf.nouhaTeamleaf.data.web.controllers;
 
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.CoursRequestDto;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.SessionCoursRequestDto;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public interface SessionCoursController {
             @RequestParam(value = "module", required = false) String module
     );
 
-    @PostMapping("/session/validate")
+    @PostMapping("/session/professeur/validate")
     String validateSession(
             @RequestParam(name = "id") Long id,
             @RequestParam(name = "sessionId", required = false) Long sessionId
@@ -42,18 +43,19 @@ public interface SessionCoursController {
             @RequestParam(name = "sessionId", required = false) Long sessionId
     );
 
-    @GetMapping("/sessionCoursForm")
-    String showForm(Model model);
+    @GetMapping("/sessionCoursForm/nouveau/{id}")
+    String showForm(Model model,@PathVariable(required = false) Long id);
 
-    @PostMapping("/save-type-session")
+    @PostMapping("/save-type-session/{id}")
     String saveTypeSession(
             Model model,
-            @RequestParam("typeSession")  String typeSession
+            @RequestParam("typeSession")  String typeSession,
+            @PathVariable Long id
     );
 
-    @PostMapping("/save-sessionCours")
+    @PostMapping("/save-sessionCours/nouveau/{id}")
     String saveSessionCours(
-            Model model,
+            @PathVariable(required = false) Long id,
             SessionCoursRequestDto sessionCoursRequestDto,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes

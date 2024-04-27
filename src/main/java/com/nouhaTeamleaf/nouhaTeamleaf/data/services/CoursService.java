@@ -4,6 +4,8 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Cours;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Etudiant;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.entitties.Module;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.CoursRequestDto;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.SessionCoursRequestDto;
+import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.response.CoursResponseDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,5 +18,7 @@ public interface CoursService {
 
     void addCours(CoursRequestDto dto);
     List<Module> getModules();
+
+    Cours getDetailsCours(Long id);
 
 }

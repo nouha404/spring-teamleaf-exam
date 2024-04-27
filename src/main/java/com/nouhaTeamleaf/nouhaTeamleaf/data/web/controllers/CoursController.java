@@ -4,6 +4,7 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.web.dto.request.CoursRequestDto;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,10 +18,15 @@ public interface CoursController {
             @RequestParam(required = false, name = "etat") String etat
     );
 
+    @GetMapping("/cours/details/{id}")
+    String detailCours(
+            Model model,
+            @PathVariable Long id
+    );
+
 
     @PostMapping("/save-cours")
     String saveCours(
-            Model model,
             CoursRequestDto coursRequestDto,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes
@@ -28,13 +34,4 @@ public interface CoursController {
 
     @GetMapping("/show-form")
     String showCoursForm(Model model);
-
-    /*
-    @GetMapping("/cours/etudiants")
-    String listeEtudiant(
-            Model model,
-            @RequestParam(name="id") Long id,
-            @RequestParam(defaultValue = "0", name = "page") int page,
-            @RequestParam(defaultValue = "10", name = "size") int size
-    );*/
 }

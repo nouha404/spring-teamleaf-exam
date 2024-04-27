@@ -5,6 +5,8 @@ import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.ETypeSession;
 import com.nouhaTeamleaf.nouhaTeamleaf.data.enums.EtatCours;
 import lombok.*;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -16,7 +18,7 @@ import java.util.Date;
 @Builder
 public class SessionCoursResponseDto {
     private Long id;
-    private Date date;
+    private LocalDate date;
     private LocalTime heureDebut;
     private LocalTime heureFin;
     private ETypeSession typeSession;
@@ -25,32 +27,19 @@ public class SessionCoursResponseDto {
     private String salle;
     private String nomComplet;
 
-    private long heuresGlobales;
-    private long heuresEffectuees;
-    private long heuresRestantes;
     private long nombreHeurePlanifier;
+
+
     private long professeurId;
 
     public  static SessionCoursResponseDto toDto(SessionCours sessionCours) {
-        long heuresGlobales = sessionCours.getCours().getNbreHeureGlobal(); //15
-
-        long heuresEffectuees = sessionCours.getCours().getSessionCours().stream()
-                .mapToInt(sc -> (int) sc.getNombreHeurePlanifier())
-                .sum();
-
-        long heuresRestantes = heuresGlobales - heuresEffectuees;
-        long nombreHeurePlanifier = sessionCours.getNombreHeurePlanifier();
-
 
         return SessionCoursResponseDto.builder()
                 .id(sessionCours.getId())
                 .date(sessionCours.getDate())
                 .heureDebut(sessionCours.getHeureDebut())
                 .heureFin(sessionCours.getHeureFin())
-                .heuresGlobales(sessionCours.getCours().getNbreHeureGlobal())
-                .heuresEffectuees(heuresEffectuees)
-                .heuresRestantes(heuresRestantes)
-                .nombreHeurePlanifier(nombreHeurePlanifier)
+                .nombreHeurePlanifier(sessionCours.getNombreHeurePlanifier())
                 .professeurId(sessionCours.getCours().getProfesseur().getId())
                 .typeSession(sessionCours.getTypeSession())
                 .etatSession(sessionCours.getEtatSession().name())

@@ -51,7 +51,17 @@ public class CoursControllerImpl implements CoursController {
     }
 
     @Override
-    public String saveCours(Model model, @Valid CoursRequestDto coursRequestDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String detailCours(Model model,Long id) {
+        Cours cours = coursService.getDetailsCours(id);
+        CoursResponseDto coursResponseDto = CoursResponseDto.toDetailDto(cours);
+        model.addAttribute("id",id);
+        model.addAttribute("cours",coursResponseDto);
+
+        return "CoursPlanifier/details";
+    }
+
+    @Override
+    public String saveCours(@Valid CoursRequestDto coursRequestDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()){
             Map<String, String> errors = new HashMap<>();
             //maintenant parcourir et les transformer en map
@@ -59,19 +69,18 @@ public class CoursControllerImpl implements CoursController {
             fieldErrors.forEach(fieldError -> errors.put(
                     fieldError.getField(), fieldError.getDefaultMessage())
             );
+
             //mettre les erreurs dans la view
             redirectAttributes.addFlashAttribute("mode", "error");
             redirectAttributes.addFlashAttribute("errors", errors);
-
-            redirectAttributes.addFlashAttribute("semestre", coursRequestDto.getSemestre());
-            redirectAttributes.addFlashAttribute("module", coursRequestDto.getModule());
-            redirectAttributes.addFlashAttribute("nombreHeureGlobal", coursRequestDto.getNbreHeureGlobal());
-            redirectAttributes.addFlashAttribute("professeur", coursRequestDto.getProfesseur());
-            return "redirect:/show-form/";
+            System.out.println("Quand il n'insere pas il reste ici");
+            return "redirect:/show-form";
         } else {
             coursService.addCours(coursRequestDto);
+            System.out.println("Ca veut dire il n'est pas rentrer ici");
+            return "redirect:/cours";
         }
-        return "redirect:/cours";
+
     }
 
     @Override
@@ -95,8 +104,6 @@ public class CoursControllerImpl implements CoursController {
         model.addAttribute("moduleSelectForm",moduleList);
         model.addAttribute("semestreSelectForm",semestreList);
         model.addAttribute("professeurSelectForm",professeurList);
-
-
 
         return "CoursPlanifier/form-add-cours";
     }

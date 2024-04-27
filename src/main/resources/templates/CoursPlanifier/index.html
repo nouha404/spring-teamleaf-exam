@@ -34,8 +34,6 @@
                     <thead>
                     <th>Module</th>
                     <th>Semestre</th>
-                    <th>Professeur</th>
-                    <th>Nombre heure global</th>
                     <th>Etat</th>
                     </thead>
                     <tbody>
@@ -43,20 +41,23 @@
                     <tr th:each="cp:${coursPlanifier}">
                         <td th:text="${cp.module}"></td>
                         <td th:text="${cp.semestre}"></td>
-                        <td th:text="${cp.professeur}"></td>
-                        <td th:text="${cp.nbreHeureGlobal}"></td>
 
                         <td th:text="${cp.etatCours}"></td>
 
                         <td>
-                            <a th:href="@{/cours/etudiants(id=${cp.id})}"
-                                    class="btn btn-outline-success">Voir etudiants</a>
+                            <a th:href="@{/cours/details/{id}(id=${cp.id})}" class="btn btn-outline-success">Voir détails</a>
                         </td>
 
-                        <td  th:if="${cp.etatCours=='TERMINER'}">
+
+                        <!--<td>
+                            <a th:href="@{/cours/etudiants(id=${cp.id})}"
+                                    class="btn btn-outline-success">Voir details</a>
+                        </td>-->
+
+                        <!--<td  th:if="${cp.etatCours=='TERMINER'}">
                             <a th:href="@{/cours/etudiants(id=${cp.id})}"
                                class="btn btn-outline-success">Valider</a>
-                        </td>
+                        </td>-->
 
                         <!--session/professeur(id=${cl.id})-->
                     </tr>
